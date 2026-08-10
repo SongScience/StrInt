@@ -1,0 +1,27 @@
+# Core reconstruction workflow (Python 3.9)
+anndata==0.10.5.post1
+numpy==1.22.3
+pandas==1.5.2
+scipy==1.9.3
+scanpy==1.9.8
+scikit-learn==1.6.1
+umap-learn==0.5.2
+loess==2.1.2
+smurf-imputation==1.0.9
+
+# Plotting and report generation
+matplotlib==3.8.4
+matplotlib-venn==0.11.10
+seaborn==0.13.2
+plotly==5.24.1
+kaleido==0.2.1
+nbformat==5.10.4
+
+# Packaged helper pipelines
+ConfigArgParse==1.7
+tqdm==4.67.1
+
+# Optional external analysis pipeline dependencies. Uncomment only when using
+# pyStrint/pipelines/spatialDE.py; these packages are not required by StrInt.
+# NaiveDE
+# SpatialDE
