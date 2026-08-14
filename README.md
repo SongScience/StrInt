@@ -28,69 +28,6 @@ python -m pip install -e .
 
 For a regular installation from a source archive or clone, use `python -m pip install .`. The package name is `pyStrint`; the importable modules are under `pyStrint`.
 
-## Quick start
-
-The demo input tables are in [`tutorial/demo`](tutorial/demo). Rows represent cells or spots and columns represent genes unless noted otherwise.
-
-```python
-from pathlib import Path
-
-import pandas as pd
-
-from pyStrint import preprocess as pp
-from pyStrint.strint import strInt
-
-data_dir = Path("tutorial/demo")
-out_dir = Path("results/demo")
-
-sc_exp = pd.read_csv(data_dir / "SC_exp.tsv", sep="\t", index_col=0)
-sc_meta = pd.read_csv(data_dir / "SC_meta.tsv", sep="\t", index_col=0)
-st_exp = pd.read_csv(data_dir / "ST_exp.tsv", sep="\t", index_col=0)
-st_coord = pd.read_csv(data_dir / "ST_coord.tsv", sep="\t", index_col=0)
-st_weight = pd.read_csv(data_dir / "ST_weight.tsv", sep="\t", index_col=0)
-
-# A per-cell expression distribution/reference is required. Replace this with
-# a distribution produced by your preprocessing workflow when available.
-sc_distribution = sc_exp.copy()
-
-sc_adata, st_adata, sc_ref, lr_df = pp.prep_all_adata(
-    sc_exp=sc_exp,
-    st_exp=st_exp,
-    sc_distribution=sc_distribution,
-    sc_meta=sc_meta,
-    st_coord=st_coord,
-    SP="Human",
-)
-
-model = strInt(
-    save_path=str(out_dir),
-    st_adata=st_adata,
-    weight=st_weight,
-    sc_ref=sc_ref,
-    sc_adata=sc_adata,
-    cell_type_key="celltype",
-    lr_df=lr_df,
-    st_tp="visium",
-    species="Human",
-)
-
-model.prep()
-selected_meta = model.select_cells(
-    p=0,
-    mean_num_per_spot=10,
-    max_rep=1,
-    seed=1111,
-)
-
-refined_exp, refined_meta = model.gradient_descent(
-    iteration=20,
-    k=2,
-)
-model.write_loss_table()
-```
-
-`gradient_descent()` writes `refined_sc_exp.tsv` under `save_path`; `write_loss_table()` writes `loss.tsv`. The return values are the refined cell-by-gene expression matrix and its cell metadata, respectively. Save `refined_meta` explicitly when a metadata file is needed.
-
 ## Input data
 
 | Object | Type and orientation | Required contents |
@@ -123,7 +60,7 @@ The output directory contains at least:
 - `refined_sc_exp.tsv`: reconstructed/refined cell-by-gene expression matrix.
 - `loss.tsv`: loss terms recorded during refinement.
 
-The selected/refined metadata is returned by the API and can be saved explicitly by the calling script, as shown in the quick-start example.
+The selected/refined metadata is returned by the API and can be saved explicitly by the calling script.
 
 ## Optional downstream tools
 
