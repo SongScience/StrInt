@@ -28,6 +28,10 @@ python -m pip install -e .
 
 For a regular installation from a source archive or clone, use `python -m pip install .`. The package name is `pyStrint`; the importable modules are under `pyStrint`.
 
+## Tutorials
+
+The [`tutorial/demo`](tutorial/demo) directory includes a small demo dataset. [`tutorial/demo_tutorial.ipynb`](tutorial/demo_tutorial.ipynb) provides a training walkthrough using these demo inputs, and [`tutorial/ana_BR.ipynb`](tutorial/ana_BR.ipynb) demonstrates an analysis of breast cancer data.
+
 ## Input data
 
 | Object | Type and orientation | Required contents |
