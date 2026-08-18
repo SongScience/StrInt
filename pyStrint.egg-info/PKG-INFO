@@ -1,0 +1,29 @@
+Metadata-Version: 2.4
+Name: pyStrint
+Version: 0.0.30
+Summary: Deciphering more accurate cell-cell interactions by modeling cells and their interactions
+Home-page: https://github.com/deepomicslab/StrInt
+Author: Jingwan WANG
+Author-email: wanwang6-c@my.cityu.edu.hk
+License: MIT
+License-File: LICENSE
+Requires-Dist: numpy==1.22.3
+Requires-Dist: umap-learn==0.5.2
+Requires-Dist: loess==2.1.2
+Requires-Dist: pandas==1.5.2
+Requires-Dist: scipy==1.9.3
+Requires-Dist: scanpy==1.9.8
+Requires-Dist: smurf-imputation
+Requires-Dist: seaborn==0.13.2
+Requires-Dist: matplotlib_venn==0.11.10
+Requires-Dist: configargparse==1.7
+Requires-Dist: plotly==5.24.1
+Requires-Dist: kaleido==0.2.1
+Requires-Dist: nbformat==5.10.4
+Dynamic: author
+Dynamic: author-email
+Dynamic: home-page
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: summary
